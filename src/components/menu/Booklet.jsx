@@ -47,14 +47,14 @@ export default function Booklet({ onOpenDish, initialCategory = -1 }) {
     if (isMobile) {
       const n = Math.min(TOTAL - 1, Math.max(0, idx + d));
       if (n === idx) return;
-      setDir(d); setIdx(n); play('flip'); return;
+      setDir(d); setIdx(n); play(d > 0 ? 'flip' : 'flipBack'); return;
     }
     const n = Math.min(SHEETS, Math.max(0, flipped + d));
     if (n === flipped) return;
     setTurning(d > 0 ? flipped : flipped - 1);
     clearTimeout(timer.current);
     timer.current = setTimeout(() => setTurning(null), 1100);
-    setFlipped(n); play('flip');
+    setFlipped(n); play(d > 0 ? 'flip' : 'flipBack');
   }, [isMobile, idx, flipped, play]);
 
   useEffect(() => {
